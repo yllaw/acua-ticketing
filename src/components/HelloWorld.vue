@@ -28,6 +28,10 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <v-btn color="success">Success</v-btn>
+    <v-btn color="error">Error</v-btn>
+    <v-btn color="warning">Warning</v-btn>
+    <v-btn color="info">Info</v-btn>
   </div>
 </template>
 
