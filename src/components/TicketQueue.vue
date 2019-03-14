@@ -65,23 +65,25 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Ticket from '@/models/Ticket';
-import tickets from '@/store/modules/tickets';
+import { Component, Vue } from 'vue-property-decorator'
+import Ticket from '@/models/Ticket'
+import tickets from '@/store/modules/tickets'
 
 @Component
 export default class TicketQueue extends Vue {
-  public active: boolean = false;
-  private tickets = tickets; // ticket state manager
+  public active: boolean = false
+  private tickets = tickets // ticket state manager
 
   public get fourtickets(): Ticket[] {
-    return this.tickets.fourtickets;
+    return this.tickets.fourtickets
   }
+
   public strikeUser(ticket: Ticket): void {
-    this.tickets.strikeUser(ticket);
+    this.tickets.strikeUser(ticket)
   }
+
   public resolve(): void {
-    this.tickets.resolve();
+    this.tickets.resolve()
   }
 }
 </script>
