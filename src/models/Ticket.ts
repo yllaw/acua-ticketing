@@ -1,8 +1,10 @@
-export default class {
-  public strikes: number;
+// tslint
+type Ticket = {
+  phone: string;
+  name: string;
+  query: string;
+  ticketId: number;
+  strikes: number;
+};
 
-  constructor(public phone: string, public name: string, public query: string,
-              public ticketId: number) {
-    this.strikes = 0;
-  }
-}
+export default Ticket;

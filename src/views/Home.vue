@@ -7,7 +7,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import TicketQueue from '@/components/TicketQueue.vue';
-import Ticket from '@/models/Ticket.ts';
 
 @Component({
   components: {
