@@ -21,9 +21,13 @@
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-content>Question:</v-list-tile-content>
-                  <v-list-tile-action><v-icon color="teal"  :disabled="i !== 0" @click="active = true">
-                    open_in_new
-                  </v-icon></v-list-tile-action>
+                  <v-list-tile-action>
+                    <v-btn flat icon color="teal"  :disabled="i !== 0" @click="active = true">
+                      <v-icon>
+                        open_in_new
+                      </v-icon>
+                    </v-btn>
+                  </v-list-tile-action>
                 </v-list-tile>
                 <v-list-tile>
                   <v-list-tile-content>Strikes:</v-list-tile-content>
