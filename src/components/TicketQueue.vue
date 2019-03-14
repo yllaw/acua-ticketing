@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <!-- DYNAMIC PROFILES -->
       <v-flex v-for="(ticket, i) in fourtickets" :key="i" d-flex>
-        <v-card>
+        <v-card hover>
           <v-card-title class="headline">
             <span v-if="i === 0">Ticket #{{ticket.ticketId}}, please come up</span>
             <span v-else>Ticket #{{ticket.ticketId}}</span>
