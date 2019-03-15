@@ -71,6 +71,10 @@ class TicketsModule extends VuexModule {
   public get fourtickets(): Ticket[] {
     return this.tickets.slice(0, 4)
   }
+
+  public get ticketCount(): number {
+    return this.tickets.length
+  }
 }
 
 export default getModule(TicketsModule)
