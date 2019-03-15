@@ -1,7 +1,7 @@
 export interface Ticket {
-  phone: string,
-  name: string,
-  query: string,
-  ticketId: number,
-  strikes: number,
+  id: number
+  phone: string
+  name: string
+  query: string
+  strikes: number
 }

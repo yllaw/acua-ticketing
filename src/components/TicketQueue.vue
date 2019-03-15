@@ -5,8 +5,8 @@
       <v-flex v-for="(ticket, i) in fourtickets" :key="i" d-flex>
         <v-card hover>
           <v-card-title class="headline">
-            <span v-if="i === 0">Ticket #{{ticket.ticketId}}, please come up</span>
-            <span v-else>Ticket #{{ticket.ticketId}}</span>
+            <span v-if="i === 0">Ticket #{{ticket.id}}, please come up</span>
+            <span v-else>Ticket #{{ticket.id}}</span>
           </v-card-title>
           <v-divider/>
           <v-card-text>
@@ -37,12 +37,12 @@
           </v-card-text>
           <v-divider/>
           <v-card-actions>
-            <v-btn flat color="error" :disabled="i !== 0" @click="strikeUser(ticket)">
+            <v-btn flat color="error" :disabled="i !== 0" @click="strikeUser">
               <span v-if="ticket.strikes < 2">Strike</span>
               <span v-else>Strike Out</span>
             </v-btn>
             <v-spacer/>
-            <v-btn flat color="primary" :disabled="i !== 0" @click="resolve">resolve</v-btn>
+            <v-btn flat color="primary" :disabled="i !== 0" @click="resolve(ticket.id)">resolve</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -51,7 +51,7 @@
     <v-dialog v-model="active" width="500">
       <v-card>
         <v-card-title class="headline">
-          Ticket #{{ fourtickets.length > 0 ? fourtickets[0].ticketId : -1 }} Question
+          Ticket #{{ fourtickets.length > 0 ? fourtickets[0].id : -1 }} Question
         </v-card-title>
         <v-card-text>
           {{ fourtickets.length > 0 ? fourtickets[0].query : '' }}
@@ -79,11 +79,11 @@ export default class TicketQueue extends Vue {
   }
 
   public strikeUser(ticket: Ticket): void {
-    this.tickets.strikeUser(ticket)
+    // this.tickets.strikeUser()
   }
 
-  public resolve(): void {
-    this.tickets.resolve()
+  public resolve(id: number): void {
+    this.tickets.resolve(id).then((res) => this.tickets.loadTickets())
   }
 }
 </script>

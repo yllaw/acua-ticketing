@@ -1,7 +1,12 @@
 <template>
   <div>
-    <TicketQueue/>
-    <TicketCount/>
+    <div v-if="!tickets.ticketLoader">
+      <TicketQueue/>
+      <TicketCount :timer="timer"/>
+    </div>
+    <div v-else>
+      Loading...
+    </div>
   </div>
 </template>
 
@@ -9,6 +14,7 @@
 import { Component, Vue } from 'vue-property-decorator'
 import TicketQueue from '@/components/TicketQueue.vue'
 import TicketCount from '@/components/TicketCount.vue'
+import tickets from '@/store/modules/tickets'
 
 @Component({
   components: {
@@ -16,5 +22,33 @@ import TicketCount from '@/components/TicketCount.vue'
     TicketCount
   }
 })
-export default class Home extends Vue {}
+export default class Home extends Vue {
+  public timer: number = 0
+  private tickets  = tickets
+  private polling: number | undefined = undefined
+  private countdown: number | undefined = undefined
+
+  public mounted(): void {
+    tickets.loadTickets()
+    this.pollData()
+  }
+
+  public beforeDestroy(): void {
+    clearInterval(this.polling)
+    clearInterval(this.countdown)
+  }
+
+  private pollData(): void {
+    this.polling = setInterval(() => {
+      tickets.loadTickets()
+    }, 11000)
+
+    this.countdown = setInterval(() => {
+      if (this.timer === 100) {
+        return (this.timer = 0)
+      }
+      this.timer += 10
+    }, 1000)
+  }
+}
 </script>
