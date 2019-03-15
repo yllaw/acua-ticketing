@@ -6,7 +6,7 @@ export const api = axios.create({
 })
 
 export async function fetchTickets(): Promise<Ticket[]> {
-  const response = await api.get('/tickets?filter[order]=name DESC')
+  const response = await api.get('/tickets?filter[order]=name DESC&filter[where][location]=Downey')
   return response.data as Ticket[]
 }
 

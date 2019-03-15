@@ -3,5 +3,6 @@ export interface Ticket {
   phone: string
   name: string
   query: string
+  location: string
   strikes: number
 }
