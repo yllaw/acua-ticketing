@@ -29,7 +29,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import Ticket from '@/models/Ticket'
 import tickets from '@/store/modules/tickets'
 
 @Component({
