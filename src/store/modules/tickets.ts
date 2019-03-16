@@ -8,8 +8,8 @@ import {
 } from 'vuex-module-decorators'
 import store from '@/store'
 import { Ticket } from '../models'
-import { fetchTickets, removeTicket } from '@/services/FakeTicketService'
-// import { fetchTickets, removeTicket } from '../api'
+import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '@/services/FakeTicketService'
+// import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '../api'
 
 @Module({
   namespaced: true,
@@ -19,6 +19,7 @@ import { fetchTickets, removeTicket } from '@/services/FakeTicketService'
 })
 class TicketsModule extends VuexModule {
   public tickets: Ticket[] = []
+  public count: number = 0
   public ticketLoader: boolean = false
 
   @MutationAction
@@ -27,13 +28,15 @@ class TicketsModule extends VuexModule {
     return { tickets }
   }
 
-  @Mutation
-  public strikeUser(): void {
-    const ticket: Ticket = this.tickets[0]
+  @MutationAction
+  public async ticketCount() {
+    const count: number = await fetchTotal()
+    return { count }
+  }
 
-    if (ticket.strikes < 2) {
-      ticket.strikes++
-    }
+  @Action
+  public async strikeTicket({ id, ticket}: {id: number, ticket: Ticket}) {
+    await strikeTicket(id, ticket)
   }
 
   @Action
@@ -48,10 +51,6 @@ class TicketsModule extends VuexModule {
 
   public get fourtickets(): Ticket[] {
     return this.tickets.slice(0, 4)
-  }
-
-  public get ticketCount(): number {
-    return this.tickets.length
   }
 }
 

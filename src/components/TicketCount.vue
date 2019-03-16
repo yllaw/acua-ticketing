@@ -40,7 +40,7 @@ export default class TicketCount extends Vue {
   private tickets = tickets // ticket state manager
 
   public get ticketCount(): number {
-    return tickets.ticketCount
+    return tickets.count
   }
 }
 </script>

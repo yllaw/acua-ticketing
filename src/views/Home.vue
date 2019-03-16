@@ -30,6 +30,7 @@ export default class Home extends Vue {
 
   public mounted(): void {
     tickets.loadTickets()
+    tickets.ticketCount()
     this.pollData()
   }
 
@@ -40,7 +41,7 @@ export default class Home extends Vue {
 
   private pollData(): void {
     this.polling = setInterval(() => {
-      tickets.loadTickets()
+      tickets.ticketCount()
     }, 11000)
 
     this.countdown = setInterval(() => {

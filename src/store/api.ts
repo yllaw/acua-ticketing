@@ -6,11 +6,25 @@ export const api = axios.create({
 })
 
 export async function fetchTickets(): Promise<Ticket[]> {
-  const response = await api.get('/tickets?filter[order]=name DESC&filter[where][location]=Downey')
+  const order: string = 'filter[order]=index ASC'
+  const where: string = 'filter[where][location]=Downey'
+  const limit: string = 'filter[limit]=4'
+
+  const response = await api.get(`/tickets?${order}&${where}&${limit}`)
+
   return response.data as Ticket[]
 }
 
+export async function fetchTotal(): Promise<number> {
+  const response = await api.get('/tickets/count')
+
+  return response.data.count as number
+}
+
 export async function removeTicket(id: number): Promise<void> {
-  const response = await api.delete(`tickets/${id}`)
-  return response.data as void
+  await api.delete(`tickets/${id}`)
+}
+
+export async function strikeTicket(id: number, ticket: Ticket): Promise<void> {
+  await api.put(`tickets/${id}`, ticket)
 }

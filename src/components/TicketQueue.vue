@@ -37,7 +37,7 @@
           </v-card-text>
           <v-divider/>
           <v-card-actions>
-            <v-btn flat color="error" :disabled="i !== 0" @click="strikeUser">
+            <v-btn flat color="error" :disabled="i !== 0" @click="strikeUser(ticket.id, ticket)">
               <span v-if="ticket.strikes < 2">Strike</span>
               <span v-else>Strike Out</span>
             </v-btn>
@@ -78,12 +78,27 @@ export default class TicketQueue extends Vue {
     return this.tickets.fourtickets
   }
 
-  public strikeUser(ticket: Ticket): void {
-    // this.tickets.strikeUser()
+  public strikeUser(id: number, ticket: Ticket): void {
+    if (ticket.strikes < 2) {
+      ticket.strikes++
+      ticket.index += 5
+      this.tickets.strikeTicket({ id, ticket }).then((res) => {
+        this.tickets.loadTickets()
+        this.tickets.ticketCount()
+      })
+    } else {
+      this.tickets.resolve(id).then((res) => {
+        this.tickets.loadTickets()
+        this.tickets.ticketCount()
+      })
+    }
   }
 
   public resolve(id: number): void {
-    this.tickets.resolve(id).then((res) => this.tickets.loadTickets())
+    this.tickets.resolve(id).then((res) => {
+      this.tickets.loadTickets()
+      this.tickets.ticketCount()
+    })
   }
 }
 </script>
