@@ -79,25 +79,32 @@ export default class TicketQueue extends Vue {
   }
 
   public strikeUser(id: number, ticket: Ticket): void {
+    this.tickets.setLoader()
+
     if (ticket.strikes < 2) {
       ticket.strikes++
       ticket.index += 5
       this.tickets.strikeTicket({ id, ticket }).then((res) => {
         this.tickets.loadTickets()
         this.tickets.ticketCount()
+        this.tickets.setLoader()
       })
     } else {
       this.tickets.resolve(id).then((res) => {
         this.tickets.loadTickets()
         this.tickets.ticketCount()
+        this.tickets.setLoader()
       })
     }
   }
 
   public resolve(id: number): void {
+    this.tickets.setLoader()
+
     this.tickets.resolve(id).then((res) => {
       this.tickets.loadTickets()
       this.tickets.ticketCount()
+      this.tickets.setLoader()
     })
   }
 }

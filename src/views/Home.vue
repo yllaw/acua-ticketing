@@ -4,8 +4,13 @@
       <TicketQueue/>
       <TicketCount :timer="timer"/>
     </div>
-    <div v-else>
-      Loading...
+    <div class="text-xs-center" v-else>
+      <v-progress-circular
+        :size="100"
+        :width="7"
+        color="teal"
+        indeterminate
+      ></v-progress-circular>
     </div>
   </div>
 </template>
