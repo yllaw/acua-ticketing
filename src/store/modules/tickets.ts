@@ -8,6 +8,7 @@ import {
 } from 'vuex-module-decorators'
 import store from '@/store'
 import { Ticket } from '../models'
+import userModule from './users'
 import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '@/services/FakeTicketService'
 // import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '../api'
 
@@ -24,7 +25,7 @@ class TicketsModule extends VuexModule {
 
   @MutationAction
   public async loadTickets() {
-    const tickets: Ticket[] = await fetchTickets()
+    const tickets: Ticket[] = await fetchTickets(userModule.user)
     return { tickets }
   }
 

@@ -1,13 +1,14 @@
 import axios from 'axios'
-import { Ticket } from './models'
+import { Ticket, User } from './models'
 
 export const api = axios.create({
   baseURL: 'http://localhost:3000/'
 })
 
-export async function fetchTickets(): Promise<Ticket[]> {
+export async function fetchTickets(user: any): Promise<Ticket[]> {
   const order: string = 'filter[order]=index ASC'
-  const where: string = 'filter[where][location]=Downey'
+  const where: string = `filter[where][and][0][location]=${user.location}`
+  + `&filter[where][and][1][window]=${user.window}`
   const limit: string = 'filter[limit]=4'
 
   const response = await api.get(`/tickets?${order}&${where}&${limit}`)

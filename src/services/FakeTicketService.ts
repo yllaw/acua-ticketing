@@ -1,4 +1,4 @@
-import { Ticket } from '@/store/models'
+import { Ticket, User } from '@/store/models'
 
 let tickets: Ticket[] = [
   {
@@ -8,6 +8,7 @@ let tickets: Ticket[] = [
     id: 1,
     index: 1,
     location: 'Downey',
+    window: 0,
     strikes: 0
   },
   {
@@ -17,6 +18,7 @@ let tickets: Ticket[] = [
     id: 2,
     index: 2,
     location: 'Downey',
+    window: 0,
     strikes: 0
   },
   {
@@ -26,6 +28,7 @@ let tickets: Ticket[] = [
     id: 3,
     index: 3,
     location: 'Downey',
+    window: 1,
     strikes: 0
   },
   {
@@ -35,6 +38,7 @@ let tickets: Ticket[] = [
     id: 4,
     index: 4,
     location: 'Downey',
+    window: 1,
     strikes: 0
   },
   {
@@ -44,6 +48,7 @@ let tickets: Ticket[] = [
     id: 5,
     index: 5,
     location: 'Downey',
+    window: 1,
     strikes: 0
   },
   {
@@ -53,14 +58,17 @@ let tickets: Ticket[] = [
     id: 6,
     index: 6,
     location: 'Other',
+    window: 3,
     strikes: 0
   }
 ]
 
 
-export function fetchTickets() {
+export function fetchTickets(user: any) {
   return new Promise<Ticket[]>((resolve, reject) => {
-    const location: Ticket[] = tickets.filter((ticket) => ticket.location === 'Downey')
+    const location: Ticket[] = tickets.filter((ticket) => {
+      return ticket.location === user.location && ticket.window === user.window
+    })
     location.sort((a, b) => {
       if (a.index > b.index) {
         return 1

@@ -5,6 +5,7 @@ export interface Ticket {
   name: string
   query: string
   location: string
+  window: number
   strikes: number
 }
 
