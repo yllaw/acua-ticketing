@@ -7,3 +7,19 @@ export interface Ticket {
   location: string
   strikes: number
 }
+
+export interface User {
+  token: string
+  name: string
+  window: number
+  location: string
+}
+
+export interface UserSubmit {
+  name: string
+  password: string
+}
+
+export interface UserResponse {
+  user: User
+}
