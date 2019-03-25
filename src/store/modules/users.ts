@@ -6,6 +6,7 @@ import {
 } from 'vuex-module-decorators'
 import store from '@/store'
 import { User, UserSubmit } from '../models'
+import { loginUser, setJWT } from '@/services/FakeUserService'
 // import { fetchProfile, fetchUser, loginUser, updateUser, setJWT } from '../api'
 
 @Module({
@@ -17,12 +18,12 @@ import { User, UserSubmit } from '../models'
 class UsersModule extends VuexModule {
   public user: User | null = null
 
-  // @MutationAction
-  // async login(userSubmit: UserSubmit) {
-  //   const user = await loginUser(userSubmit)
-  //   setJWT(user.token)
-  //   return { user }
-  // }
+  @MutationAction
+  public async login(userSubmit: UserSubmit) {
+    const user = await loginUser(userSubmit)
+    setJWT(user.token)
+    return { user }
+  }
 }
 
 export default getModule(UsersModule)

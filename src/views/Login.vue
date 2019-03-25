@@ -8,7 +8,7 @@
               <v-toolbar-title>Login</v-toolbar-title>
             </v-toolbar>
             <v-card-text>
-              <v-form>
+              <v-form @submit="login">
                 <v-text-field color="teal" prepend-icon="person" name="login" label="Name" type="text" v-model="name"/>
                 <v-text-field color="teal" id="password" prepend-icon="lock" name="password" label="Password" type="password" v-model="password"/>
               </v-form>
@@ -18,9 +18,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <router-link to="/manager">
-                <v-btn dark color="teal">Login</v-btn>
-              </router-link>
+              <v-btn dark color="teal" @click="login">Login</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -31,6 +29,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+import users from '@/store/modules/users'
 
 @Component
 export default class Login extends Vue {
@@ -39,7 +38,14 @@ export default class Login extends Vue {
   public loginError: string = ''
 
   public login(): void {
-    // TODO
+    users.login({
+      name: this.name,
+      password: this.password
+    })
+    .then(() => this.$router.push('/manager'))
+    .catch((err) => {
+      this.loginError = 'Invalid name or password'
+    })
   }
 }
 </script>
