@@ -17,8 +17,12 @@ export async function fetchTickets(user: any): Promise<Ticket[]> {
   return response.data as Ticket[]
 }
 
-export async function fetchTotal(): Promise<number> {
-  const response = await api.get('/tickets/count')
+export async function fetchTotal(user: any): Promise<number> {
+  const where: string = `where[and][0][location]=${user.location}`
+  + `&where[and][1][window]=${user.window}`
+  + `&where[and][2][isComplete]=false`
+
+  const response = await api.get(`/tickets/count?${where}`)
 
   return response.data.count as number
 }
