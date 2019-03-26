@@ -1,8 +1,16 @@
 <template>
   <div>
     <div v-if="!tickets.ticketLoader">
-      <TicketQueue/>
-      <TicketCount :timer="timer"/>
+      <v-container grid-list-xl>
+        <v-layout row wrap>
+          <v-flex xs12>
+            <TicketCard/>
+          </v-flex>
+          <v-flex xs12>
+            <TicketCount :timer="timer"/>
+          </v-flex>
+        </v-layout>
+      </v-container>
     </div>
     <div class="text-xs-center" v-else>
       <v-progress-circular
@@ -12,11 +20,13 @@
         indeterminate
       ></v-progress-circular>
     </div>
+    <TicketQueue/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import TicketCard from '@/components/TicketCard.vue'
 import TicketQueue from '@/components/TicketQueue.vue'
 import TicketCount from '@/components/TicketCount.vue'
 import tickets from '@/store/modules/tickets'
@@ -25,7 +35,8 @@ import users from '@/store/modules/users'
 @Component({
   components: {
     TicketQueue,
-    TicketCount
+    TicketCount,
+    TicketCard
   }
 })
 export default class Manager extends Vue {

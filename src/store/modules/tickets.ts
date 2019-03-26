@@ -21,6 +21,7 @@ import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '@/services
 class TicketsModule extends VuexModule {
   public tickets: Ticket[] = []
   public count: number = 0
+  public limit: number = 4
   public ticketLoader: boolean = false
 
   @MutationAction
@@ -50,8 +51,12 @@ class TicketsModule extends VuexModule {
     this.ticketLoader = !this.ticketLoader
   }
 
-  public get fourtickets(): Ticket[] {
-    return this.tickets.slice(0, 4)
+  public get xtickets(): Ticket[] {
+    return this.tickets.slice(0, this.limit)
+  }
+
+  public get firstTicket(): Ticket {
+    return this.tickets[0]
   }
 }
 

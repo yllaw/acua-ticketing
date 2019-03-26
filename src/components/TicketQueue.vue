@@ -1,67 +1,27 @@
 <template>
-  <v-container grid-list-xl>
-    <v-layout row wrap>
-      <!-- DYNAMIC PROFILES -->
-      <v-flex v-for="(ticket, i) in fourtickets" :key="i" d-flex>
-        <v-card hover>
-          <v-card-title class="headline">
-            <span v-if="i === 0">Ticket #{{ticket.id}}, please come up</span>
-            <span v-else>Ticket #{{ticket.id}}</span>
-          </v-card-title>
-          <v-divider/>
-          <v-card-text>
-            <v-list dense>
-                <v-list-tile>
-                  <v-list-tile-content>Name:</v-list-tile-content>
-                  <v-list-tile-content class="align-end font-weight-bold">{{ ticket.name }}</v-list-tile-content>
-                </v-list-tile>
-                <v-list-tile>
-                  <v-list-tile-content>Phone Number:</v-list-tile-content>
-                  <v-list-tile-content class="align-end font-weight-bold">{{ ticket.phone }}</v-list-tile-content>
-                </v-list-tile>
-                <v-list-tile>
-                  <v-list-tile-content>Question:</v-list-tile-content>
-                  <v-list-tile-action>
-                    <v-btn flat icon color="teal"  :disabled="i !== 0" @click="active = true">
-                      <v-icon>
-                        open_in_new
-                      </v-icon>
-                    </v-btn>
-                  </v-list-tile-action>
-                </v-list-tile>
-                <v-list-tile>
-                  <v-list-tile-content>Strikes:</v-list-tile-content>
-                  <v-list-tile-content class="align-end font-weight-bold">{{ ticket.strikes }}</v-list-tile-content>
-                </v-list-tile>
-              </v-list>
-          </v-card-text>
-          <v-divider/>
-          <v-card-actions>
-            <v-btn flat color="error" :disabled="i !== 0" @click="strikeUser(ticket.id, ticket)">
-              <span v-if="ticket.strikes < 2">Strike</span>
-              <span v-else>Strike Out</span>
-            </v-btn>
-            <v-spacer/>
-            <v-btn flat color="primary" :disabled="i !== 0" @click="resolve(ticket.id, ticket)">resolve</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-flex>
-    </v-layout>
-    <!-- user's query -->
-    <v-dialog v-model="active" width="500">
-      <v-card>
-        <v-card-title class="headline">
-          Ticket #{{ fourtickets.length > 0 ? fourtickets[0].id : -1 }} Question
-        </v-card-title>
-        <v-card-text>
-          {{ fourtickets.length > 0 ? fourtickets[0].query : '' }}
-        </v-card-text>
-        <v-card-actions>
-          <v-btn flat color="primary" @click="active = false">close</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-  </v-container>
+  <v-navigation-drawer
+    v-model="drawerRight"
+    fixed
+    right
+    clipped
+    app
+  >
+    <v-list dense v-for="(ticket, i) in xtickets" :key="i">
+      <v-list-tile v-if="i === 0">
+        <v-list-tile-content>
+          <v-list-tile-title class="title text-xs-center">Window {{window}} Queue</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+      <v-list-tile v-else>
+        <v-list-tile-action>
+          <v-icon>local_play</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>Ticket #{{ticket.id}}</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
+  </v-navigation-drawer>
 </template>
 
 <script lang="ts">
@@ -72,44 +32,19 @@ import users from '@/store/modules/users'
 
 @Component
 export default class TicketQueue extends Vue {
-  public active: boolean = false
   private tickets = tickets // ticket state manager
   private users = users
 
-  public get fourtickets(): Ticket[] {
-    return this.tickets.fourtickets
+  public get xtickets(): Ticket[] {
+    return this.tickets.xtickets
   }
 
-  public strikeUser(id: number, ticket: Ticket): void {
-    this.tickets.setLoader()
-
-    if (ticket.strikes < 2) {
-      ticket.strikes++
-      ticket.index += 5
-      this.tickets.strikeTicket({ id, ticket }).then((res) => {
-        this.tickets.loadTickets()
-        tickets.ticketCount(this.users.user)
-        this.tickets.setLoader()
-      })
-    } else {
-      ticket.isComplete = true
-      this.tickets.resolve({ id, ticket }).then((res) => {
-        this.tickets.loadTickets()
-        tickets.ticketCount(this.users.user)
-        this.tickets.setLoader()
-      })
-    }
+  public get ticket(): Ticket {
+    return this.tickets.firstTicket
   }
 
-  public resolve(id: number, ticket: Ticket): void {
-    this.tickets.setLoader()
-
-    ticket.isComplete = true
-    this.tickets.resolve({ id, ticket }).then((res) => {
-      this.tickets.loadTickets()
-      tickets.ticketCount(this.users.user)
-      this.tickets.setLoader()
-    })
+  public get window(): number | null {
+    return this.users.window === null ? null : this.users.window + 1
   }
 }
 </script>
