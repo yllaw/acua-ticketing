@@ -24,6 +24,14 @@ class UsersModule extends VuexModule {
     setJWT(user.token)
     return { user }
   }
+
+  public get username(): string | null {
+    if (this.user !== null) {
+      return this.user.username
+    }
+
+    return null
+  }
 }
 
 export default getModule(UsersModule)

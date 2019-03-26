@@ -11,14 +11,15 @@ export interface Ticket {
 }
 
 export interface User {
+  id: number
   token: string
-  name: string
+  username: string
   window: number
   location: string
 }
 
 export interface UserSubmit {
-  name: string
+  username: string
   password: string
 }
 

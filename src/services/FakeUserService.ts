@@ -2,14 +2,16 @@ import { User, UserSubmit } from '@/store/models'
 
 const users: User[] = [
   {
+    id: 1,
     token: '123',
-    name: 'John',
+    username: 'John',
     window: 0,
     location: 'Downey'
   },
   {
+    id: 2,
     token: '321',
-    name: 'Jane',
+    username: 'Jane',
     window: 1,
     location: 'Downey'
   }
@@ -20,7 +22,7 @@ export function loginUser(userSubmit: UserSubmit) {
     let user: User | null = null
 
     users.forEach((u) => {
-      if (u.name === userSubmit.name) {
+      if (u.username === userSubmit.username) {
         user = u
       }
     })

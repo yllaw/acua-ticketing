@@ -3,7 +3,7 @@
     <v-toolbar color="teal" dark app>
       <v-toolbar-title>ACUA Ticketing Manager</v-toolbar-title>
       <v-spacer/>
-      <span v-if="user !== null">Welcome, {{ user.name }}</span>
+      <span v-if="username !== null">Welcome, {{ username }}</span>
     </v-toolbar>
     <v-content>
       <v-container fluid>
@@ -19,6 +19,10 @@ import userModule from '@/store/modules/users'
 
 @Component
 export default class App extends Vue {
-  public user = userModule.user
+
+  public get username(): string | null {
+    return userModule.username === null ? null : userModule.username
+  }
+
 }
 </script>

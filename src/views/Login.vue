@@ -9,8 +9,8 @@
             </v-toolbar>
             <v-card-text>
               <v-form @submit="login">
-                <v-text-field color="teal" prepend-icon="person" name="login" label="Name" type="text" v-model="name"/>
-                <v-text-field color="teal" id="password" prepend-icon="lock" name="password" label="Password" type="password" v-model="password"/>
+                <v-text-field color="teal" prepend-icon="person" name="login" label="Username" type="text" v-model="username"/>
+                <v-text-field color="teal" prepend-icon="lock" name="password" label="Password" type="password" v-model="password"/>
               </v-form>
               <span class="error-text">
                 {{loginError}}
@@ -33,13 +33,13 @@ import users from '@/store/modules/users'
 
 @Component
 export default class Login extends Vue {
-  public name: string = ''
+  public username: string = ''
   public password: string = ''
   public loginError: string = ''
 
   public login(): void {
     users.login({
-      name: this.name,
+      username: this.username,
       password: this.password
     })
     .then(() => this.$router.push('/manager'))
