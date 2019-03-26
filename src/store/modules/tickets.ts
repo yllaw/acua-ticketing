@@ -30,8 +30,8 @@ class TicketsModule extends VuexModule {
   }
 
   @MutationAction
-  public async ticketCount() {
-    const count: number = await fetchTotal()
+  public async ticketCount(user: any) {
+    const count: number = await fetchTotal(user)
     return { count }
   }
 

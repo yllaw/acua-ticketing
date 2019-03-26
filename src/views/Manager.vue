@@ -20,6 +20,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import TicketQueue from '@/components/TicketQueue.vue'
 import TicketCount from '@/components/TicketCount.vue'
 import tickets from '@/store/modules/tickets'
+import users from '@/store/modules/users'
 
 @Component({
   components: {
@@ -30,12 +31,13 @@ import tickets from '@/store/modules/tickets'
 export default class Manager extends Vue {
   public timer: number = 0
   private tickets  = tickets
+  private users = users
   private polling: number | undefined = undefined
   private countdown: number | undefined = undefined
 
   public mounted(): void {
     tickets.loadTickets()
-    tickets.ticketCount()
+    tickets.ticketCount(this.users.user)
     this.pollData()
   }
 
@@ -46,7 +48,7 @@ export default class Manager extends Vue {
 
   private pollData(): void {
     this.polling = setInterval(() => {
-      tickets.ticketCount()
+      tickets.ticketCount(this.users.user)
     }, 11000)
 
     this.countdown = setInterval(() => {

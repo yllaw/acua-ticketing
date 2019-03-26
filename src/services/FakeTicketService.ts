@@ -90,8 +90,14 @@ export function fetchTickets(user: any) {
   })
 }
 
-export function fetchTotal() {
-  return new Promise<number>((resolve, reject) => setTimeout(() => resolve(tickets.length)))
+export function fetchTotal(user: any) {
+  return new Promise<number>((resolve, reject) => setTimeout(() => resolve(
+    tickets.filter((ticket) => {
+      return ticket.location === user.location
+      && ticket.window === user.window
+      && ticket.isComplete === false
+    }).length
+  )))
 }
 
 export function removeTicket(id: number, ticket: Ticket) {

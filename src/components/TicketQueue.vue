@@ -68,11 +68,13 @@
 import { Component, Vue } from 'vue-property-decorator'
 import { Ticket } from '@/store/models'
 import tickets from '@/store/modules/tickets'
+import users from '@/store/modules/users'
 
 @Component
 export default class TicketQueue extends Vue {
   public active: boolean = false
   private tickets = tickets // ticket state manager
+  private users = users
 
   public get fourtickets(): Ticket[] {
     return this.tickets.fourtickets
@@ -86,14 +88,14 @@ export default class TicketQueue extends Vue {
       ticket.index += 5
       this.tickets.strikeTicket({ id, ticket }).then((res) => {
         this.tickets.loadTickets()
-        this.tickets.ticketCount()
+        tickets.ticketCount(this.users.user)
         this.tickets.setLoader()
       })
     } else {
       ticket.isComplete = true
       this.tickets.resolve({ id, ticket }).then((res) => {
         this.tickets.loadTickets()
-        this.tickets.ticketCount()
+        tickets.ticketCount(this.users.user)
         this.tickets.setLoader()
       })
     }
@@ -105,7 +107,7 @@ export default class TicketQueue extends Vue {
     ticket.isComplete = true
     this.tickets.resolve({ id, ticket }).then((res) => {
       this.tickets.loadTickets()
-      this.tickets.ticketCount()
+      tickets.ticketCount(this.users.user)
       this.tickets.setLoader()
     })
   }
