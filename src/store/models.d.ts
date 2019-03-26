@@ -7,6 +7,7 @@ export interface Ticket {
   location: string
   window: number
   strikes: number
+  isComplete: boolean
 }
 
 export interface User {

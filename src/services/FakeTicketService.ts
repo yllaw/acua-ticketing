@@ -1,6 +1,6 @@
 import { Ticket, User } from '@/store/models'
 
-let tickets: Ticket[] = [
+const tickets: Ticket[] = [
   {
     phone: '(123) 456-7890',
     name: 'User 1',
@@ -9,7 +9,8 @@ let tickets: Ticket[] = [
     index: 1,
     location: 'Downey',
     window: 0,
-    strikes: 0
+    strikes: 0,
+    isComplete: false
   },
   {
     phone: '(321) 456-7890',
@@ -19,7 +20,8 @@ let tickets: Ticket[] = [
     index: 2,
     location: 'Downey',
     window: 0,
-    strikes: 0
+    strikes: 0,
+    isComplete: false
   },
   {
     phone: '(231) 456-7890',
@@ -29,7 +31,8 @@ let tickets: Ticket[] = [
     index: 3,
     location: 'Downey',
     window: 1,
-    strikes: 0
+    strikes: 0,
+    isComplete: false
   },
   {
     phone: '(312) 456-7890',
@@ -39,7 +42,8 @@ let tickets: Ticket[] = [
     index: 4,
     location: 'Downey',
     window: 1,
-    strikes: 0
+    strikes: 0,
+    isComplete: false
   },
   {
     phone: '(132) 456-7890',
@@ -49,7 +53,8 @@ let tickets: Ticket[] = [
     index: 5,
     location: 'Downey',
     window: 1,
-    strikes: 0
+    strikes: 0,
+    isComplete: false
   },
   {
     phone: '(111) 456-7890',
@@ -59,7 +64,8 @@ let tickets: Ticket[] = [
     index: 6,
     location: 'Other',
     window: 3,
-    strikes: 0
+    strikes: 0,
+    isComplete: false
   }
 ]
 
@@ -67,7 +73,9 @@ let tickets: Ticket[] = [
 export function fetchTickets(user: any) {
   return new Promise<Ticket[]>((resolve, reject) => {
     const location: Ticket[] = tickets.filter((ticket) => {
-      return ticket.location === user.location && ticket.window === user.window
+      return ticket.location === user.location
+      && ticket.window === user.window
+      && ticket.isComplete === false
     })
     location.sort((a, b) => {
       if (a.index > b.index) {
@@ -86,10 +94,15 @@ export function fetchTotal() {
   return new Promise<number>((resolve, reject) => setTimeout(() => resolve(tickets.length)))
 }
 
-export function removeTicket(id: number) {
+export function removeTicket(id: number, ticket: Ticket) {
   return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
-      tickets = tickets.filter((ticket) => ticket.id !== id)
+      for (const key in tickets) {
+        if (tickets[key].id === id) {
+          tickets[key].isComplete = true
+          break
+        }
+      }
       resolve()
     }, 10)
   })

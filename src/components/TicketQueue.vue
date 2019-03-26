@@ -42,7 +42,7 @@
               <span v-else>Strike Out</span>
             </v-btn>
             <v-spacer/>
-            <v-btn flat color="primary" :disabled="i !== 0" @click="resolve(ticket.id)">resolve</v-btn>
+            <v-btn flat color="primary" :disabled="i !== 0" @click="resolve(ticket.id, ticket)">resolve</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -90,7 +90,8 @@ export default class TicketQueue extends Vue {
         this.tickets.setLoader()
       })
     } else {
-      this.tickets.resolve(id).then((res) => {
+      ticket.isComplete = true
+      this.tickets.resolve({ id, ticket }).then((res) => {
         this.tickets.loadTickets()
         this.tickets.ticketCount()
         this.tickets.setLoader()
@@ -98,10 +99,11 @@ export default class TicketQueue extends Vue {
     }
   }
 
-  public resolve(id: number): void {
+  public resolve(id: number, ticket: Ticket): void {
     this.tickets.setLoader()
 
-    this.tickets.resolve(id).then((res) => {
+    ticket.isComplete = true
+    this.tickets.resolve({ id, ticket }).then((res) => {
       this.tickets.loadTickets()
       this.tickets.ticketCount()
       this.tickets.setLoader()

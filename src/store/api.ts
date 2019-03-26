@@ -9,6 +9,7 @@ export async function fetchTickets(user: any): Promise<Ticket[]> {
   const order: string = 'filter[order]=index ASC'
   const where: string = `filter[where][and][0][location]=${user.location}`
   + `&filter[where][and][1][window]=${user.window}`
+  + `&filter[where][and][2][isComplete]=false`
   const limit: string = 'filter[limit]=4'
 
   const response = await api.get(`/tickets?${order}&${where}&${limit}`)
@@ -22,8 +23,8 @@ export async function fetchTotal(): Promise<number> {
   return response.data.count as number
 }
 
-export async function removeTicket(id: number): Promise<void> {
-  await api.delete(`tickets/${id}`)
+export async function removeTicket(id: number, update: any): Promise<void> {
+  await api.patch(`tickets/${id}`, update)
 }
 
 export async function strikeTicket(id: number, ticket: Ticket): Promise<void> {

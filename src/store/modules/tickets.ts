@@ -41,8 +41,8 @@ class TicketsModule extends VuexModule {
   }
 
   @Action
-  public async resolve(id: number) {
-    await removeTicket(id)
+  public async resolve({ id, ticket}: {id: number, ticket: Ticket}) {
+    await removeTicket(id, ticket)
   }
 
   @Mutation
