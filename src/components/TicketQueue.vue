@@ -6,10 +6,20 @@
     clipped
     app
   >
-    <v-list dense v-for="(ticket, i) in xtickets" :key="i">
-      <v-list-tile v-if="i === 0">
+    <v-list dense>
+      <v-list-tile>
         <v-list-tile-content>
           <v-list-tile-title class="title text-xs-center">Window {{window}} Queue</v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+    </v-list>
+    <v-list dense v-for="(ticket, i) in queue" :key="i">
+      <v-list-tile v-if="i === 0">
+        <v-list-tile-action>
+          <v-icon>local_play</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title>Ticket #{{ticket.id}} (Current)</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile v-else>
@@ -20,6 +30,11 @@
           <v-list-tile-title>Ticket #{{ticket.id}}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
+    </v-list>
+    <v-list dense v-if="queue.length === 0">
+      <v-list-tile-content>
+        <v-list-tile-title class="text-xs-center">No Tickets</v-list-tile-title>
+      </v-list-tile-content>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -35,7 +50,7 @@ export default class TicketQueue extends Vue {
   private tickets = tickets // ticket state manager
   private users = users
 
-  public get xtickets(): Ticket[] {
+  public get queue(): Ticket[] {
     return this.tickets.xtickets
   }
 

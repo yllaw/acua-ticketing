@@ -1,10 +1,9 @@
 <template>
   <div>
     <!-- Current Ticket -->
-    <v-card hover>
+    <v-card hover v-if="queue.length > 0">
       <v-card-title class="headline">
-        <span v-if="i === 0">Ticket #{{ticket.id}}, please come up</span>
-        <span v-else>Ticket #{{ticket.id}}</span>
+        Ticket #{{ticket.id}}
       </v-card-title>
       <v-divider/>
       <v-card-text>
@@ -47,10 +46,10 @@
     <v-dialog v-model="active" width="500">
       <v-card>
         <v-card-title class="headline">
-          Ticket #{{ xtickets.length > 0 ? ticket.id : -1 }} Question
+          Ticket #{{ queue.length > 0 ? ticket.id : -1 }} Question
         </v-card-title>
         <v-card-text>
-          {{ xtickets.length > 0 ? ticket.query : '' }}
+          {{ queue.length > 0 ? ticket.query : '' }}
         </v-card-text>
         <v-card-actions>
           <v-btn flat color="primary" @click="active = false">close</v-btn>
@@ -72,7 +71,7 @@ export default class TicketQueue extends Vue {
   private tickets = tickets // ticket state manager
   private users = users
 
-  public get xtickets(): Ticket[] {
+  public get queue(): Ticket[] {
     return this.tickets.xtickets
   }
 
