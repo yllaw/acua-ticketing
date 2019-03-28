@@ -3,11 +3,14 @@
     <div v-if="!tickets.ticketLoader">
       <v-container grid-list-xl>
         <v-layout row wrap>
-          <v-flex xs12>
+          <v-flex d-flex xs6 offset-xs3>
             <TicketCard/>
           </v-flex>
-          <v-flex xs12>
+          <v-flex d-flex xs12>
             <TicketCount :timer="timer"/>
+          </v-flex>
+          <v-flex d-flex xs12>
+            <TicketLimit/>
           </v-flex>
         </v-layout>
       </v-container>
@@ -29,6 +32,7 @@ import { Component, Vue } from 'vue-property-decorator'
 import TicketCard from '@/components/TicketCard.vue'
 import TicketQueue from '@/components/TicketQueue.vue'
 import TicketCount from '@/components/TicketCount.vue'
+import TicketLimit from '@/components/TicketLimit.vue'
 import tickets from '@/store/modules/tickets'
 import users from '@/store/modules/users'
 
@@ -36,7 +40,8 @@ import users from '@/store/modules/users'
   components: {
     TicketQueue,
     TicketCount,
-    TicketCard
+    TicketCard,
+    TicketLimit
   }
 })
 export default class Manager extends Vue {

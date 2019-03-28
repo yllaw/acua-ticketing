@@ -69,6 +69,20 @@ const tickets: Ticket[] = [
   }
 ]
 
+for (let i = 10; i < 30; i++) {
+  tickets.push({
+    phone: '(132) 456-7890',
+    name: 'User 5',
+    query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
+    id: i,
+    index: i,
+    location: 'Downey',
+    window: Math.round(Math.random()),
+    strikes: 0,
+    isComplete: false
+  })
+}
+
 
 export function fetchTickets(user: any) {
   return new Promise<Ticket[]>((resolve, reject) => {
@@ -86,7 +100,7 @@ export function fetchTickets(user: any) {
         return 0
       }
     })
-    setTimeout(() => resolve(location.slice(0, 4)), 10)
+    setTimeout(() => resolve(location.slice(0, 12)), 10)
   })
 }
 

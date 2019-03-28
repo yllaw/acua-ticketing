@@ -66,7 +66,7 @@ import tickets from '@/store/modules/tickets'
 import users from '@/store/modules/users'
 
 @Component
-export default class TicketQueue extends Vue {
+export default class TicketCard extends Vue {
   public active: boolean = false
   private tickets = tickets // ticket state manager
   private users = users

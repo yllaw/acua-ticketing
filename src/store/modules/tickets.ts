@@ -51,6 +51,11 @@ class TicketsModule extends VuexModule {
     this.ticketLoader = !this.ticketLoader
   }
 
+  @Mutation
+  public setLimit(limit: number) {
+    this.limit = limit
+  }
+
   public get xtickets(): Ticket[] {
     return this.tickets.slice(0, this.limit)
   }

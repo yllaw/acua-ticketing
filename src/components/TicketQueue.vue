@@ -1,6 +1,5 @@
 <template>
   <v-navigation-drawer
-    v-model="drawerRight"
     fixed
     right
     clipped
@@ -36,6 +35,9 @@
         <v-list-tile-title class="text-xs-center">No Tickets</v-list-tile-title>
       </v-list-tile-content>
     </v-list>
+    <v-list dense v-if="queue.length > 0 && remaining > 0">
+      <v-subheader>+ {{remaining}} more</v-subheader>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -56,6 +58,10 @@ export default class TicketQueue extends Vue {
 
   public get ticket(): Ticket {
     return this.tickets.firstTicket
+  }
+
+  public get remaining(): number {
+    return this.tickets.count - this.tickets.limit
   }
 
   public get window(): number | null {
