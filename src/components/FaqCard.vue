@@ -55,6 +55,7 @@ export default class FaqCard extends Vue {
       this.faqs.loadFaqs()
       faqs.faqCount(this.users.user)
       this.faqs.setLoader()
+      this.answer = ''
     })
   }
 }
