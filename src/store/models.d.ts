@@ -10,6 +10,15 @@ export interface Ticket {
   isComplete: boolean
 }
 
+export interface Faq {
+  id: number
+  index: number
+  query: string
+  answer: string | null
+  window: number
+  isComplete: boolean
+}
+
 export interface User {
   id: number
   token: string
