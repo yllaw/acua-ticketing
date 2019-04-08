@@ -6,10 +6,10 @@
           <v-flex d-flex xs6 offset-xs3>
             <TicketCard/>
           </v-flex>
-          <v-flex d-flex xs12>
+          <v-flex d-flex xs6>
             <TicketCount :timer="timer"/>
           </v-flex>
-          <v-flex d-flex xs12>
+          <v-flex d-flex xs6>
             <TicketLimit/>
           </v-flex>
         </v-layout>

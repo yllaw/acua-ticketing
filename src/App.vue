@@ -4,6 +4,21 @@
       <v-toolbar-title>ACUA Ticketing Manager</v-toolbar-title>
       <v-spacer/>
       <span v-if="username !== null">Welcome, {{ username }}</span>
+      <template v-slot:extension v-if="username !== null">
+        <v-tabs
+          v-model="tab"
+          color="teal"
+          grow
+        >
+          <v-tabs-slider color="white"></v-tabs-slider>
+          <v-tab to="/manager">
+            Tickets
+          </v-tab>
+          <v-tab to="/faqs">
+            FAQs
+          </v-tab>
+        </v-tabs>
+      </template>
     </v-toolbar>
     <v-content>
       <v-container fluid>

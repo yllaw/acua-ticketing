@@ -25,6 +25,11 @@ const router = new Router({
       component: () => import('./views/Manager.vue')
     },
     {
+      path: '/faqs',
+      name: 'faqs',
+      component: () => import('./views/FaqManager.vue')
+    },
+    {
       path: '*',
       redirect: '/login'
     }
