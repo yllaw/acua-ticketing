@@ -41,6 +41,8 @@ router.beforeEach((to, from, next) => {
 
   if (to.fullPath === '/manager' && user === null) {
     next('/login')
+  } else if (to.fullPath === '/faqs' && user === null) {
+    next('/login')
   } else if (to.fullPath === '/login' && user !== null) {
     next('/manager')
   } else {
