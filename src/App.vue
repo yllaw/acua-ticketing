@@ -6,15 +6,14 @@
       <span v-if="username !== null">Welcome, {{ username }}</span>
       <template v-slot:extension v-if="username !== null">
         <v-tabs
-          v-model="tab"
           color="teal"
           grow
         >
           <v-tabs-slider color="white"></v-tabs-slider>
-          <v-tab to="/manager">
+          <v-tab to="/manager/tickets">
             Tickets
           </v-tab>
-          <v-tab to="/faqs">
+          <v-tab to="/manager/faqs">
             FAQs
           </v-tab>
         </v-tabs>

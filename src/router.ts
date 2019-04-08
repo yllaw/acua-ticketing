@@ -20,12 +20,12 @@ const router = new Router({
       component: () => import('./views/Login.vue')
     },
     {
-      path: '/manager',
+      path: '/manager/tickets',
       name: 'manager',
       component: () => import('./views/Manager.vue')
     },
     {
-      path: '/faqs',
+      path: '/manager/faqs',
       name: 'faqs',
       component: () => import('./views/FaqManager.vue')
     },
@@ -39,12 +39,12 @@ const router = new Router({
 router.beforeEach((to, from, next) => {
   const user = UserModule.user
 
-  if (to.fullPath === '/manager' && user === null) {
+  if (to.fullPath === '/manager/tickets' && user === null) {
     next('/login')
-  } else if (to.fullPath === '/faqs' && user === null) {
+  } else if (to.fullPath === '/manager/faqs' && user === null) {
     next('/login')
   } else if (to.fullPath === '/login' && user !== null) {
-    next('/manager')
+    next('/manager/tickets')
   } else {
     next()
   }

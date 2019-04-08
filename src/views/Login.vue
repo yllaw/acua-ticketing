@@ -42,7 +42,7 @@ export default class Login extends Vue {
       username: this.username,
       password: this.password
     })
-    .then(() => this.$router.push('/manager'))
+    .then(() => this.$router.push('/manager/tickets'))
     .catch((err) => {
       this.loginError = 'Invalid name or password'
     })
