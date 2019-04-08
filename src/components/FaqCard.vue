@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card hover v-if="queue.length > 0">
+    <v-card min-height="317" hover v-if="queue.length > 0">
       <v-card-title class="headline">
         FAQ #{{faq.id}}
       </v-card-title>
