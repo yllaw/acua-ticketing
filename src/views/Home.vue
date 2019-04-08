@@ -30,9 +30,9 @@
       >
         <v-flex xs12 sm4 class="my-3">
           <div class="text-xs-center">
-            <h2 class="headline">The best way to start developing</h2>
+            <h2 class="headline">How to Manage Tickets and Faqs.</h2>
             <span class="subheading">
-              Cras facilisis mi vitae nunc 
+              easily and efficiently!
             </span>
           </div>
         </v-flex>
@@ -40,47 +40,74 @@
           <v-container grid-list-xl>
             <v-layout row wrap align-center>
               <v-flex xs12 md4>
-                <v-card class="elevation-0 transparent">
+                <v-card class="elevation-0 transparent" min-height="410">
                   <v-card-text class="text-xs-center">
-                    <v-icon x-large class="blue--text text--lighten-2">color_lens</v-icon>
+                    <v-icon x-large class="blue--text text--lighten-2">verified_user</v-icon>
                   </v-card-text>
                   <v-card-title primary-title class="layout justify-center">
-                    <div class="headline text-xs-center">Material Design</div>
+                    <div class="headline text-xs-center">Secure Sign In</div>
                   </v-card-title>
                   <v-card-text>
-                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                    Login with your username and password to securely manage tickets and faqs.
                   </v-card-text>
                 </v-card>
               </v-flex>
               <v-flex xs12 md4>
-                <v-card class="elevation-0 transparent">
+                <v-card class="elevation-0 transparent" min-height="410">
                   <v-card-text class="text-xs-center">
-                    <v-icon x-large class="blue--text text--lighten-2">flash_on</v-icon>
+                    <v-icon x-large class="blue--text text--lighten-2">local_play</v-icon>
                   </v-card-text>
                   <v-card-title primary-title class="layout justify-center">
-                    <div class="headline">Fast development</div>
+                    <div class="headline">Manage Tickets</div>
                   </v-card-title>
                   <v-card-text>
-                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                    <ul>
+                      <li>
+                        View and adjust the size of the ticket queue.
+                      </li>
+                      <li>
+                        Updates every 10 seconds.
+                      </li>
+                      <li>
+                        Click on the expand button to view the question ahead of time.
+                      </li>
+                      <li>
+                        <b>Strike</b>: If a person does not come up to the front desk after calling for
+                         him/her a few times, press the strike button to push them back 5 places. After
+                          doing this 3 times, they will be removed and have to create a new ticket.
+                      </li>
+                      <li>
+                        <b>Resolve</b>: You have successfully helped the owner of the ticket and can remove
+                        the ticket.
+                      </li>
+                    </ul>
                   </v-card-text>
                 </v-card>
               </v-flex>
               <v-flex xs12 md4>
-                <v-card class="elevation-0 transparent">
+                <v-card class="elevation-0 transparent" min-height="410">
                   <v-card-text class="text-xs-center">
-                    <v-icon x-large class="blue--text text--lighten-2">build</v-icon>
+                    <v-icon x-large class="blue--text text--lighten-2">receipt</v-icon>
                   </v-card-text>
                   <v-card-title primary-title class="layout justify-center">
-                    <div class="headline text-xs-center">Completely Open Sourced</div>
+                    <div class="headline text-xs-center">Manage Faqs</div>
                   </v-card-title>
                   <v-card-text>
-                    Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                    Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
+                    <ul>
+                      <li>
+                        View and adjust the size of the faq queue.
+                      </li>
+                      <li>
+                        Updates every 10 seconds.
+                      </li>
+                      <li>
+                        Fill out the answer to the question in the text field.
+                      </li>
+                      <li>
+                        <b>Answer</b>: This will submit the answered question for the users of the
+                         ACUA app to view.
+                      </li>
+                    </ul>
                   </v-card-text>
                 </v-card>
               </v-flex>
@@ -112,13 +139,11 @@
           <v-flex xs12 sm4>
             <v-card class="elevation-0 transparent">
               <v-card-title primary-title class="layout justify-center">
-                <div class="headline">Company info</div>
+                <div class="headline">Powered By</div>
               </v-card-title>
-              <v-card-text>
-                Cras facilisis mi vitae nunc lobortis pharetra. Nulla volutpat tincidunt ornare. 
-                Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. 
-                Nullam in aliquet odio. Aliquam eu est vitae tellus bibendum tincidunt. Suspendisse potenti. 
-              </v-card-text>
+              <v-img
+                :src="require('@/assets/logo.png')"
+              ></v-img>
             </v-card>
           </v-flex>
           <v-flex xs12 sm4 offset-sm1>
