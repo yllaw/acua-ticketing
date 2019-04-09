@@ -2,7 +2,8 @@ import {
   getModule,
   Module,
   MutationAction,
-  VuexModule
+  VuexModule,
+  Mutation
 } from 'vuex-module-decorators'
 import store from '@/store'
 import { User, UserSubmit } from '../models'
@@ -23,6 +24,11 @@ class UsersModule extends VuexModule {
     const user = await loginUser(userSubmit)
     setJWT(user.token)
     return { user }
+  }
+
+  @Mutation
+  public logout(): void {
+    this.user = null
   }
 
   public get username(): string | null {
