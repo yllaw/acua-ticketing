@@ -3,7 +3,7 @@
     <!-- Current Ticket -->
     <v-card min-height="317" hover v-if="queue.length > 0">
       <v-card-title class="headline">
-        Ticket #{{ticket.id}}
+        Ticket #{{ticket.number}}
       </v-card-title>
       <v-divider/>
       <v-card-text>
@@ -46,7 +46,7 @@
     <v-dialog v-model="active" width="500">
       <v-card>
         <v-card-title class="headline">
-          Ticket #{{ queue.length > 0 ? ticket.id : -1 }} Question
+          Ticket #{{ queue.length > 0 ? ticket.number : -1 }} Question
         </v-card-title>
         <v-card-text>
           {{ queue.length > 0 ? ticket.query : '' }}

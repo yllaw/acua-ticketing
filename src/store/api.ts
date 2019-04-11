@@ -10,7 +10,7 @@ export async function fetchTickets(user: any): Promise<Ticket[]> {
   const where: string = `filter[where][and][0][location]=${user.location}`
   + `&filter[where][and][1][window]=${user.window}`
   + `&filter[where][and][2][isComplete]=false`
-  const limit: string = 'filter[limit]=4'
+  const limit: string = 'filter[limit]=12'
 
   const response = await api.get(`/tickets?${order}&${where}&${limit}`)
 

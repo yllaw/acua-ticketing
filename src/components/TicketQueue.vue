@@ -18,7 +18,7 @@
           <v-icon>local_play</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title>Ticket #{{ticket.id}} (Current)</v-list-tile-title>
+          <v-list-tile-title>Ticket #{{ticket.number}} (Current)</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
       <v-list-tile v-else>
@@ -26,7 +26,7 @@
           <v-icon>local_play</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title>Ticket #{{ticket.id}}</v-list-tile-title>
+          <v-list-tile-title>Ticket #{{ticket.number}}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>

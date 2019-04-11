@@ -1,80 +1,14 @@
 import { Ticket, User } from '@/store/models'
 
-const tickets: Ticket[] = [
-  {
-    phone: '(123) 456-7890',
-    name: 'User 1',
-    query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
-    id: 1,
-    index: 1,
-    location: 'Downey',
-    window: 0,
-    strikes: 0,
-    isComplete: false
-  },
-  {
-    phone: '(321) 456-7890',
-    name: 'User 2',
-    query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
-    id: 2,
-    index: 2,
-    location: 'Downey',
-    window: 0,
-    strikes: 0,
-    isComplete: false
-  },
-  {
-    phone: '(231) 456-7890',
-    name: 'User 3',
-    query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
-    id: 3,
-    index: 3,
-    location: 'Downey',
-    window: 1,
-    strikes: 0,
-    isComplete: false
-  },
-  {
-    phone: '(312) 456-7890',
-    name: 'User 4',
-    query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
-    id: 4,
-    index: 4,
-    location: 'Downey',
-    window: 1,
-    strikes: 0,
-    isComplete: false
-  },
-  {
-    phone: '(132) 456-7890',
-    name: 'User 5',
-    query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
-    id: 5,
-    index: 5,
-    location: 'Downey',
-    window: 1,
-    strikes: 0,
-    isComplete: false
-  },
-  {
-    phone: '(111) 456-7890',
-    name: 'User 6',
-    query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
-    id: 6,
-    index: 6,
-    location: 'Other',
-    window: 3,
-    strikes: 0,
-    isComplete: false
-  }
-]
+const tickets: Ticket[] = []
 
-for (let i = 10; i < 30; i++) {
+for (let i = 0; i < 30; i++) {
   tickets.push({
+    id: 'alsdnfklaneg',
     phone: '(132) 456-7890',
     name: 'User 5',
     query: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium?',
-    id: i,
+    number: i,
     index: i,
     location: 'Downey',
     window: Math.round(Math.random()),
@@ -114,11 +48,11 @@ export function fetchTotal(user: any) {
   )))
 }
 
-export function removeTicket(id: number, ticket: Ticket) {
+export function removeTicket(num: number, ticket: Ticket) {
   return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       for (const key in tickets) {
-        if (tickets[key].id === id) {
+        if (tickets[key].number === num) {
           tickets[key].isComplete = true
           break
         }
@@ -128,10 +62,10 @@ export function removeTicket(id: number, ticket: Ticket) {
   })
 }
 
-export function strikeTicket(id: number, ticket: Ticket) {
+export function strikeTicket(num: number, ticket: Ticket) {
   return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
-      const index = tickets.findIndex((t) => t.id === id)
+      const index = tickets.findIndex((t) => t.number === num)
       tickets[index] = ticket
       resolve()
     }, 10)

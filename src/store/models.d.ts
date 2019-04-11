@@ -1,5 +1,6 @@
 export interface Ticket {
-  id: number
+  id: string
+  number: number
   index: number
   phone: string
   name: string
