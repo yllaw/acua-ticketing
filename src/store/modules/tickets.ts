@@ -9,8 +9,8 @@ import {
 import store from '@/store'
 import { Ticket } from '../models'
 import userModule from './users'
-// import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '@/services/FakeTicketService'
-import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '../api'
+import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '@/services/FakeTicketService'
+// import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '../api'
 
 @Module({
   namespaced: true,
