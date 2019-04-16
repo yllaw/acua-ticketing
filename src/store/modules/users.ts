@@ -7,8 +7,8 @@ import {
 } from 'vuex-module-decorators'
 import store from '@/store'
 import { User, UserSubmit } from '../models'
-import { loginUser, setJWT } from '@/services/FakeUserService'
-// import { fetchProfile, fetchUser, loginUser, updateUser, setJWT } from '../api'
+import { loginUser } from '@/services/FakeUserService'
+// import { loginUser } from '../api'
 
 @Module({
   namespaced: true,
@@ -22,7 +22,6 @@ class UsersModule extends VuexModule {
   @MutationAction
   public async login(userSubmit: UserSubmit) {
     const user = await loginUser(userSubmit)
-    setJWT(user.token)
     return { user }
   }
 

@@ -22,7 +22,6 @@ export interface Faq {
 
 export interface User {
   id: number
-  token: string
   username: string
   window: number
   location: string

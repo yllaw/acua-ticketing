@@ -3,14 +3,12 @@ import { User, UserSubmit } from '@/store/models'
 const users: User[] = [
   {
     id: 1,
-    token: '123',
     username: 'John',
     window: 0,
     location: 'Downey'
   },
   {
     id: 2,
-    token: '321',
     username: 'Jane',
     window: 1,
     location: 'Downey'
@@ -34,11 +32,5 @@ export function loginUser(userSubmit: UserSubmit) {
         reject(new Error('user not found'))
       }
     }, 10)
-  })
-}
-
-export function setJWT(jwt: string) {
-  return new Promise<void>((resolve, reject) => {
-    setTimeout(() => resolve())
   })
 }
