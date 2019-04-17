@@ -7,8 +7,8 @@ import {
 } from 'vuex-module-decorators'
 import store from '@/store'
 import { User, UserSubmit } from '../models'
-import { loginUser } from '@/services/FakeUserService'
-// import { loginUser } from '../api'
+// import { loginUser } from '@/services/FakeUserService'
+import { loginUser } from '../api'
 
 @Module({
   namespaced: true,

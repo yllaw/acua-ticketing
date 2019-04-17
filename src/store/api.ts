@@ -2,7 +2,7 @@ import axios from 'axios'
 import { Ticket, UserSubmit, User } from './models'
 
 export const api = axios.create({
-  baseURL: 'http://localhost:3000/'
+  baseURL: 'https://acua-server.herokuapp.com/'
 })
 
 export async function fetchTickets(user: any): Promise<Ticket[]> {
