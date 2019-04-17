@@ -36,7 +36,11 @@ export async function strikeTicket(id: number, ticket: Ticket): Promise<void> {
 }
 
 export async function loginUser(userSubmit: UserSubmit): Promise<User> {
-  const response = await api.post('/users/login', userSubmit)
+  const response = await api.patch('/users/login', userSubmit)
 
   return response.data as User
+}
+
+export async function logoutUser(user: any): Promise<void> {
+  await api.patch('/users/logout', user)
 }

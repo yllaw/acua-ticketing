@@ -21,7 +21,7 @@ export interface Faq {
 }
 
 export interface User {
-  id: number
+  id: string
   username: string
   window: number
   location: string

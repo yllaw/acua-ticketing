@@ -41,17 +41,24 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import userModule from '@/store/modules/users'
+import { User } from '@/store/models'
+import users from '@/store/modules/users'
 
 @Component
 export default class App extends Vue {
+  private users = users
+
+  private get user(): User | null {
+    return this.users.currUser
+  }
 
   public get username(): string | null {
-    return userModule.username === null ? null : userModule.username
+    return this.users.username === null ? null : this.users.username
   }
 
   public logout(): void {
-    userModule.logout()
+    this.users.logoutUser({user: this.user})
+    this.users.logout()
     this.$router.push('/login')
   }
 

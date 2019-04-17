@@ -2,13 +2,13 @@ import { User, UserSubmit } from '@/store/models'
 
 const users: User[] = [
   {
-    id: 1,
+    id: '1',
     username: 'John',
     window: 0,
     location: 'Downey'
   },
   {
-    id: 2,
+    id: '2',
     username: 'Jane',
     window: 1,
     location: 'Downey'

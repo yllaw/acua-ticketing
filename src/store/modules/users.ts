@@ -3,12 +3,13 @@ import {
   Module,
   MutationAction,
   VuexModule,
-  Mutation
+  Mutation,
+  Action
 } from 'vuex-module-decorators'
 import store from '@/store'
 import { User, UserSubmit } from '../models'
 // import { loginUser } from '@/services/FakeUserService'
-import { loginUser } from '../api'
+import { loginUser, logoutUser } from '../api'
 
 @Module({
   namespaced: true,
@@ -28,6 +29,15 @@ class UsersModule extends VuexModule {
   @Mutation
   public logout(): void {
     this.user = null
+  }
+
+  @Action
+  public async logoutUser({ user }: any) {
+    await logoutUser(user)
+  }
+
+  public get currUser(): User | null {
+    return this.user
   }
 
   public get username(): string | null {
