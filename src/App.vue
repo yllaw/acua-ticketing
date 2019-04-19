@@ -62,5 +62,15 @@ export default class App extends Vue {
     this.$router.push('/login')
   }
 
+  public created() {
+    window.addEventListener('beforeunload', this.handler)
+  }
+
+  private handler(event: any) {
+    if (this.user !== null) {
+      this.users.logoutUser({user: this.user})
+    }
+  }
+
 }
 </script>
