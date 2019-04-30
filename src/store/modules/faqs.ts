@@ -9,8 +9,8 @@ import {
 import store from '@/store'
 import { Faq } from '../models'
 import userModule from './users'
-import { fetchFaqs, answerFaq, fetchTotal } from '@/services/FakeFaqService'
-// import { fetchTickets, removeTicket, strikeTicket, fetchTotal } from '../api'
+// import { fetchFaqs, answerFaq, fetchFaqTotal } from '@/services/FakeFaqService'
+import { fetchFaqs, answerFaq, fetchFaqTotal } from '../api'
 
 @Module({
   namespaced: true,
@@ -32,7 +32,7 @@ class FaqsModule extends VuexModule {
 
   @MutationAction
   public async faqCount(user: any) {
-    const count: number = await fetchTotal(user)
+    const count: number = await fetchFaqTotal(user)
     return { count }
   }
 

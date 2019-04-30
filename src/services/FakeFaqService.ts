@@ -32,7 +32,7 @@ export function fetchFaqs(user: any) {
   })
 }
 
-export function fetchTotal(user: any) {
+export function fetchFaqTotal(user: any) {
   return new Promise<number>((resolve, reject) => setTimeout(() => resolve(
     faqs.filter((faq) => {
       return faq.window === user.window && faq.isComplete === false

@@ -2,7 +2,7 @@
   <div>
     <v-card min-height="317" hover v-if="queue.length > 0">
       <v-card-title class="headline">
-        FAQ #{{faq.id}}
+        FAQ ID: {{faq.id}}
       </v-card-title>
       <v-divider/>
       <v-card-text>
@@ -50,6 +50,7 @@ export default class FaqCard extends Vue {
     this.faqs.setLoader()
 
     this.faq.answer = this.answer
+    this.faq.isComplete = true
 
     this.faqs.answerFaq({ id, faq }).then((res) => {
       this.faqs.loadFaqs()
