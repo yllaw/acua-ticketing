@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!tickets.ticketLoader">
+    <div v-if="!loader">
       <v-container grid-list-xl>
         <v-layout row wrap>
           <v-flex d-flex xs6 offset-xs3>
@@ -50,6 +50,10 @@ export default class Manager extends Vue {
   private users = users
   private polling: number | undefined = undefined
   private countdown: number | undefined = undefined
+
+  public get loader(): boolean {
+    return tickets.ticketLoader;
+  }
 
   public mounted(): void {
     tickets.loadTickets()

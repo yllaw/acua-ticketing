@@ -46,6 +46,7 @@ import users from '@/store/modules/users'
 
 @Component
 export default class App extends Vue {
+  public on: any
   private users = users
 
   private get user(): User | null {
